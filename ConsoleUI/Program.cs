@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Business.Concrete;
+using DataAccess.Concrete.EntityFramework;
+using DataAccess.Concrete.InMemory;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,10 +9,16 @@ using System.Threading.Tasks;
 
 namespace ConsoleUI
 {
-    internal class Program
+    class Program
     {
-        //abstract soyut referans tutucular koyulucak
-        //concrete somut 
-
+        static void Main(string[] args)
+        {
+            ProductManager productManager = new ProductManager(new EfProductDal());
+           
+            foreach (var products in productManager.GetAll())
+            {
+                Console.WriteLine(products.ProductName);
+            }
+        }
     }
 }
